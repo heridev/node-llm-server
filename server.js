@@ -106,7 +106,7 @@ app.post("/api/query", async (req, res) => {
 async function callClaude(prompt, options = {}) {
   const { temperature = 0.3, max_tokens = 800, top_p = 0.9 } = options;
 
-  // Already optimized coming from the electron app
+  // Already optimized coming from the client app
   // Enhanced prompt for mobile-friendly responses
   //   const enhancedPrompt = `${prompt}
 

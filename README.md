@@ -1,4 +1,4 @@
-# Node LLM Server
+# Node.js LLM Proxy Server
 
 A Node.js Express server that acts as a proxy for the Anthropic Claude API initially. The server provides a RESTful API endpoint that processes prompts and returns structured, mobile-friendly responses.
 
@@ -23,7 +23,7 @@ A Node.js Express server that acts as a proxy for the Anthropic Claude API initi
 
    ```bash
    git clone <repository-url>
-   cd elektron-voice-recorder-llm-server
+   cd node-llm-server
    ```
 
 2. **Install dependencies**:
@@ -216,7 +216,7 @@ print(data['data']['summary_points'])
 ### Project Structure
 
 ```
-elektron-voice-recorder-llm-server/
+nodejs-llm-proxy-server/
 ├── server.js          # Main server file
 ├── package.json       # Dependencies and scripts
 ├── package-lock.json  # Locked dependency versions
