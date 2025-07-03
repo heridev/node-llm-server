@@ -119,11 +119,24 @@ async function callClaude(prompt, options = {}) {
 
   // Keep responses concise for mobile viewing (small screens). Use 3-5 bullet points maximum, each under 15 words. The detailed explanation should be 2-3 sentences maximum.`;
 
+  // As of July 2025, the claude-3-5-haiku-latest model is one of the cheapest
+  // some examples of pricing
+  // Claude Sonnet 3.7	$3 / MTok	$3.75 / MTok	$6 / MTok	$0.30 / MTok	$15 / MTok
+  // claude-3-7-sonnet-latest
+  // Claude Haiku 3.5	$0.80 / MTok	$1 / MTok	$1.6 / MTok	$0.08 / MTok	$4 / MTok
+  // claude-3-5-haiku-latest
+  // the fastest and cheapest as of July 2025
+  // claude-3-haiku-20240307
+  // https://docs.anthropic.com/en/docs/about-claude/pricing
+  const claudeModel = process.env.CLAUDE_MODEL || "claude-3-haiku-20240307";
+
+  const claudeStartTime = Date.now();
+
   try {
     const response = await axios.post(
       "https://api.anthropic.com/v1/messages",
       {
-        model: "claude-3-sonnet-20240229",
+        model: claudeModel,
         max_tokens: max_tokens,
         temperature: temperature,
         top_p: top_p,
@@ -143,6 +156,16 @@ async function callClaude(prompt, options = {}) {
         timeout: 30000, // 30 seconds timeout
       }
     );
+
+    const claudeEndTime = Date.now();
+    const claudeDuration = claudeEndTime - claudeStartTime;
+
+    console.log(`Claude API Response received in ${claudeDuration}ms:`, {
+      model: response.data.model,
+      inputTokens: response.data.usage?.input_tokens,
+      outputTokens: response.data.usage?.output_tokens,
+      stopReason: response.data.stop_reason,
+    });
 
     return response.data;
   } catch (error) {
