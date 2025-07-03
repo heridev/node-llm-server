@@ -1,11 +1,10 @@
 # Elektron Voice Recorder LLM Server
 
-A Node.js Express server that acts as a proxy for the Anthropic Claude API, specifically optimized for mobile applications. The server provides a RESTful API endpoint that processes prompts and returns structured, mobile-friendly responses.
+A Node.js Express server that acts as a proxy for the Anthropic Claude API initially. The server provides a RESTful API endpoint that processes prompts and returns structured, mobile-friendly responses.
 
 ## Features
 
 - **Claude API Integration**: Proxy for Anthropic's Claude 3 Sonnet model
-- **Mobile-Optimized Responses**: Structured JSON responses with bullet points and concise explanations
 - **Rate Limiting**: Built-in rate limiting to prevent abuse
 - **Error Handling**: Comprehensive error handling with specific error codes
 - **CORS Support**: Cross-origin resource sharing enabled
@@ -34,7 +33,7 @@ A Node.js Express server that acts as a proxy for the Anthropic Claude API, spec
    ```
 
 3. **Set up environment variables**:
-   Create a `.env` file in the root directory:
+   Copy `.env.example` and rename it to `.env` in the root directory:
 
    ```bash
    touch .env
@@ -115,21 +114,6 @@ The server will start on port 3001 by default (or the port specified in your `.e
 - `temperature` (optional): Controls randomness (0.0-1.0, default: 0.3)
 - `max_tokens` (optional): Maximum tokens in response (default: 800)
 - `top_p` (optional): Nucleus sampling parameter (default: 0.9)
-
-#### Response Format
-
-```json
-{
-  "success": true,
-  "data": {
-    "summary_points": ["Key point 1", "Key point 2", "Key point 3"],
-    "detailed_flow": "Brief explanation that expands on the key points",
-    "confidence": 0.85,
-    "mobile_optimized": true
-  },
-  "timestamp": "2024-01-01T00:00:00.000Z"
-}
-```
 
 ## Error Handling
 
@@ -236,7 +220,7 @@ elektron-voice-recorder-llm-server/
 ├── server.js          # Main server file
 ├── package.json       # Dependencies and scripts
 ├── package-lock.json  # Locked dependency versions
-├── .env              # Environment variables (create this)
+├── .env.example              # Environment variables (create this)
 ├── .gitignore        # Git ignore rules
 └── README.md         # This file
 ```
@@ -300,7 +284,7 @@ MIT License - see the LICENSE file for details.
 
 ## Author
 
-Heriberto Perez
+elh.mx
 
 ## Support
 
