@@ -1,4 +1,4 @@
-# Elektron Voice Recorder LLM Server
+# Node LLM Server
 
 A Node.js Express server that acts as a proxy for the Anthropic Claude API initially. The server provides a RESTful API endpoint that processes prompts and returns structured, mobile-friendly responses.
 
