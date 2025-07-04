@@ -5,7 +5,7 @@ const rateLimit = require("express-rate-limit");
 require("dotenv").config();
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3050;
 
 // Middleware
 app.use(cors());
@@ -55,7 +55,12 @@ app.post("/api/query", async (req, res) => {
     });
 
     // Parse and format response for mobile display
+    console.log("Response before the formatFormMobile:", response);
     const formattedResponse = formatForMobile(response);
+    console.log(
+      "Formatted Response after the formatFormMobile:",
+      formattedResponse
+    );
 
     res.json({
       success: true,
@@ -104,7 +109,7 @@ app.post("/api/query", async (req, res) => {
 });
 
 async function callClaude(prompt, options = {}) {
-  const { temperature = 0.3, max_tokens = 800, top_p = 0.9 } = options;
+  const { temperature = 0.3, max_tokens = 1500, top_p = 0.9 } = options;
 
   // Already optimized coming from the client app
   // Enhanced prompt for mobile-friendly responses
@@ -227,6 +232,7 @@ function formatForMobile(claudeResponse) {
       summary_points: parsedContent.summary_points || ["Response received"],
       detailed_flow:
         parsedContent.detailed_flow || content.substring(0, 200) + "...",
+      code_snippets: parsedContent.code_snippets,
       confidence: parsedContent.confidence || 0.8,
       mobile_optimized: true,
     };
